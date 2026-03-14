@@ -5,9 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <button class="new-book">New Book</button>
+    <dialog class="book-dialog">
+        <form class="book-form">
+            <h2>Add a Book 📗</h2>
+            <div class="form-field"><label for="book-title">Title: </label><input id="book-title"></div>
+            <div class="form-field"><label for="book-author">Author: </label><input id="book-author"></div>
+            <div class="form-field"><label for="book-pages">Pages: </label><input id="book-pages" type="number" ></div>
+            <div class="radio">
+                <label class="radio-title">Have you read it?</label>
+                <div class="radio-one"><input id="radio-read" type="radio" name="radio" ><label for="radio-read">Yes</label></div>
+                <div class="radio-two"><input id="radio-read-two" type="radio" name="radio" checked><label for="radio-read-two">No</label></div>
+            </div>
+            <button class="add-book">+ Add Book</button>
+        </form>
+    </dialog>
+    <div class="library">
+        <div class="book"> 
+            <div class="book-front">
+                <h2></h2>
+            </div>
+            <div class="book-back">
+                <p>Book Title: </p>
+                <p>Book Author: </p>
+                <p>Book Pages: </p>
+                <p>Read: <span class="isRead-text">No</span><input type="checkbox" class="checkbox"><button class="toggle"><div class="toggle-knob"></div></button></p>
+                <button class="delete">🗑️Delete</button> 
+            </div>
+        </div>
+    </div>  
     <script src="script.js"></script>
 </body>
 </html>
