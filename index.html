@@ -10,7 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <button class="new-book">New Book</button>
+    <header>
+        <h1>Library</h1>
+        <h2>Add your book</h2>
+        <button class="new-book">+ Create Book</button>
+    </header>
+
     <dialog class="book-dialog">
         <form class="book-form">
             <h2>Add a Book 📗</h2>
@@ -26,18 +31,18 @@
         </form>
     </dialog>
     <div class="library">
-        <div class="book"> 
+    <!--<div class="book-card"> 
             <div class="book-front">
-                <h2></h2>
+                <h3></h3>
             </div>
             <div class="book-back">
-                <p>Book Title: </p>
-                <p>Book Author: </p>
-                <p>Book Pages: </p>
-                <p>Read: <span class="isRead-text">No</span><input type="checkbox" class="checkbox"><button class="toggle"><div class="toggle-knob"></div></button></p>
+                <p><b>Book Title:</b> Title</p>
+                <p><b>Book Author:</b> Author</p>
+                <p><b>Book Pages:</b> Pages </p>
+                <p class="isRead-p"><b>Read:</b> Yes/No <input type="checkbox" class="checkbox"><button class="toggle"><div class="toggle-knob"></div></button></p>
                 <button class="delete">🗑️Delete</button> 
             </div>
-        </div>
+        </div>-->
     </div>  
     <script src="script.js"></script>
 </body>
