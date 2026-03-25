@@ -12,22 +12,15 @@ const checkbox = document.querySelector(".checkbox");
 
 let library = [];
 
-//Detect Overflow
-function isDisplayFilled() {
-    const book = document.querySelector(".book-card");
-    const bookHeight = book.offsetHeight;
-    const bookWidth = book.offsetWidth;
-    const cardsNumber = display.children.length;
-    const libraryGap = window.innerHeight * 0.02;
-    const libraryPadding = window.innerHeight * 0.05;
-
-    let columns = Math.floor((display.clientWidth - libraryPadding + libraryGap) / (bookWidth + libraryGap));
-    let rows = Math.floor((display.clientHeight - window.innerHeight * 0.06) / bookHeight); 
-    let capacity = rows * columns;
-    console.log(`rows: ${rows} columns: ${columns} capacity: ${capacity}`);
-    
-    return cardsNumber >= capacity;
-    
+//Constructor
+class Book {
+    constructor(bookTitle, bookAuthor, bookPages, isRead) {
+        this.bookTitle = bookTitle ? bookTitle : "N/A";
+        this.bookAuthor = bookAuthor ? bookAuthor : "N/A";
+        this.bookPages = bookPages ? bookPages : "0";
+        this.isRead = isRead;
+        this.id = crypto.randomUUID();
+    } 
 }
 
 //Detect Window Resize
@@ -55,7 +48,9 @@ display.addEventListener('click', (e) => {
             }
         }
         displayBooks();
-        toggleButton();
+        if(library.length>1){
+            toggleButton();
+        }
     }
 })
 
@@ -73,18 +68,28 @@ display.addEventListener("change", (e) => {
     }
 })
 
+
+//Detect Overflow
+function isDisplayFilled() {
+    const book = document.querySelector(".book-card");
+    const bookHeight = book.offsetHeight;
+    const bookWidth = book.offsetWidth;
+    const cardsNumber = display.children.length;
+    const libraryGap = window.innerHeight * 0.02;
+    const libraryPadding = window.innerHeight * 0.05;
+
+    let columns = Math.floor((display.clientWidth - libraryPadding + libraryGap) / (bookWidth + libraryGap));
+    let rows = Math.floor((display.clientHeight - window.innerHeight * 0.06) / bookHeight); 
+    let capacity = rows * columns;
+    // console.log(`rows: ${rows} columns: ${columns} capacity: ${capacity}`);
+    
+    return cardsNumber >= capacity;
+    
+}
+
 //Book prototype function
 Book.prototype.updateStatus = function(newStatus){
     this.isRead = newStatus;
-}
-
-//Constructor
-function Book(bookTitle, bookAuthor, bookPages, isRead) {
-    this.bookTitle = bookTitle ? bookTitle : "N/A";
-    this.bookAuthor = bookAuthor ? bookAuthor : "N/A";
-    this.bookPages = bookPages ? bookPages : "0";
-    this.isRead = isRead;
-    this.id = crypto.randomUUID();
 }
 
 //Add book to library
