@@ -25,6 +25,9 @@ class Book {
         this.isRead = isRead;
         this.id = crypto.randomUUID();
     } 
+    updateStatus(newStatus){
+        this.isRead = newStatus;
+    }
 }
 
 //Detect Window Resize
@@ -93,17 +96,13 @@ function isDisplayFilled() {
     
 }
 
-//Book prototype function
-Book.prototype.updateStatus = function(newStatus){
-    this.isRead = newStatus;
-}
 
 //Add book to library
 function addBookToLibrary() {
     library.push(new Book(bookTitle.value, bookAuthor.value, bookPages.value, isRead.checked));
 }
 
-//Display books
+//Display books     
 function displayBooks() {
     let displayHTML = "";
     for (let i=library.length-1; i>=0; i--) {
