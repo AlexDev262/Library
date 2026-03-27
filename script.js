@@ -8,6 +8,10 @@ const newBook = document.querySelector(".new-book");
 const modal = document.querySelector(".book-dialog");
 const bookForm = document.querySelector(".book-form");
 const checkbox = document.querySelector(".checkbox");
+const isReadText = document.querySelectorAll(".isRead-text");
+const toggleBox = document.querySelectorAll(".toggle-box");
+
+
 
 
 let library = [];
@@ -60,7 +64,9 @@ display.addEventListener("change", (e) => {
         for (let i=0; i<library.length; i++) {
             if (library[i].id === e.target.dataset.id) {
                 library[i].updateStatus(e.target.checked); 
-                const status = e.target.previousElementSibling;
+                const toggleBox = document.querySelectorAll(".toggle-box");
+                const status = toggleBox[toggleBox.length - i - 1].previousElementSibling; //Target the Read Status element inside the card
+                console.log(status);
                 status.textContent = library[i].isRead ? "Yes" : "No";
                 break;
             } 
@@ -81,7 +87,7 @@ function isDisplayFilled() {
     let columns = Math.floor((display.clientWidth - libraryPadding + libraryGap) / (bookWidth + libraryGap));
     let rows = Math.floor((display.clientHeight - window.innerHeight * 0.06) / bookHeight); 
     let capacity = rows * columns;
-    // console.log(`rows: ${rows} columns: ${columns} capacity: ${capacity}`);
+     console.log(`rows: ${rows} columns: ${columns} capacity: ${capacity}`);
     
     return cardsNumber >= capacity;
     
@@ -103,16 +109,17 @@ function displayBooks() {
     for (let i=library.length-1; i>=0; i--) {
         displayHTML += `
         <div class="book-card">
-            <div class="book-front">
-                <h2>${library[i].bookTitle}</h2>
-            </div>
-            <div class="book-back">
-                <p><b>Book Title: </b> ${library[i].bookTitle}</p>
-                <p><b>Book Author: </b> ${library[i].bookAuthor}</p>
-                <p><b>Book Pages: </b> ${library[i].bookPages}</p>
-                <p class="isRead-p">Read: <span class="isRead-text">${library[i].isRead ? "Yes" : "No"}</span><input data-id="${library[i].id}" type="checkbox" class="checkbox" ${library[i].isRead ? "checked" : ""}><button class="toggle"><div class="toggle-knob"></div></button></p>
-                <button class="delete" data-id="${library[i].id}">🗑️Delete</button> 
-            </div>
+            <h2 class="title">${library[i].bookTitle}</h2>
+            <p><b>Book Author: </b> ${library[i].bookAuthor}</p>
+            <p><b>Book Pages: </b> ${library[i].bookPages}</p>
+            <p class="isRead-p"><b>Read: </b> 
+                <span class="isRead-text">${library[i].isRead ? " Yes" : " No"}</span>
+                <span class="toggle-box">
+                    <input data-id="${library[i].id}" type="checkbox" class="checkbox" ${library[i].isRead ? "checked" : ""}>
+                    <button class="toggle"><div class="toggle-knob"></div></button>
+                </span>
+            </p>
+            <button class="delete" data-id="${library[i].id}">🗑️Delete</button> 
         </div>`;
     }
     display.innerHTML = displayHTML;
